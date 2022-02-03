@@ -5,13 +5,9 @@ import { Result, MathOperations, Functions, Numbers } from './components/index'
 import './App.css';
 
 const App = () => {  
-
   const [text,setText] = useState('')
 
   const items = words(text, /[^-^+^*^/]+/g)
-
-  console.log('Renderizacion de la app', items);
-
   const value = items.length > 0 ? items[items.length-1] : '0'; 
 
   return (
@@ -19,20 +15,13 @@ const App = () => {
       <Result value={value} />
       
       <Numbers 
-        onClickNumber={number => { 
-          console.log(number) 
-          setText(`${text}${number}`)
-        }} 
+        onClickNumber={number => setText(`${text}${number}`)} 
       />
 
       <Functions 
-        onContentClear={() => {
-          console.log('onContentClear')
-          setText('')
-        }}
+        onContentClear={() => setText('')}
         onDelete={() => {
           if(text.length > 0) {
-            console.log('onDelete')
             const newText = text.substring(0, text.length -1)
             setText(newText) 
           }
@@ -40,12 +29,8 @@ const App = () => {
       />
 
       <MathOperations 
-        onClickOperations={operation => {
-          console.log("operacion:", operation)
-          setText(`${text}${operation}`)
-        }}
-        onClickEqual={equal => {
-          console.log("equal:", equal)
+        onClickOperations={operation => {setText(`${text}${operation}`)}}
+        onClickEqual={() => {
           if(text!==0) {
             setText(eval(text).toString())
           } 
