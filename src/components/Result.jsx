@@ -8,10 +8,10 @@ const Result = ({ value }) => (
 );
 
 Result.propTypes = {
-    value: PropTypes.number.isRequired
+    value: PropTypes.string.isRequired
 }
 Result.defaultProps = {
-    value: 0
+    value: "0"
 }
 
 export default Result;
