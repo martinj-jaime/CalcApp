@@ -1,10 +1,11 @@
 /* eslint no-eval: 0 */
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import words from 'lodash.words'
 import { Result, MathOperations, Functions, Numbers } from './components/index'
 import './App.css';
 
-const App = () => {  
+const App: FC = () => {  
+
   const [text,setText] = useState('')
 
   const items = words(text, /[^-^+^*^/]+/g)
@@ -15,7 +16,7 @@ const App = () => {
       <Result value={value} />
       
       <Numbers 
-        onClickNumber={number => setText(`${text}${number}`)} 
+        onClickNumber={(number: any) => setText(`${text}${number}`)} 
       />
 
       <Functions 
@@ -29,9 +30,9 @@ const App = () => {
       />
 
       <MathOperations 
-        onClickOperations={operation => {setText(`${text}${operation}`)}}
+        onClickOperations={(operation: any) => {setText(`${text}${operation}`)}}
         onClickEqual={() => {
-          if(text!==0) {
+          if(text!==null) {
             setText(eval(text).toString())
           } 
         }} 
